@@ -1,12 +1,6 @@
 import songs from "../database/models/songs.js";
 import AppData from "../lib/error.js";
 class Controller {
-  async Home(req, res) {
-    res.json({
-      success: true,
-      message: "Working fine"
-    });
-  }
   async getTotalSongs(req, res) {
     const total = await songs.find().countDocuments();
     total
