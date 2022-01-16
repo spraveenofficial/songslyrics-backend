@@ -32,7 +32,7 @@ class Controller {
       : res.json(new AppData(false, "Not found", 404));
   }
   async getSpecificGenreSongs(req, res) {
-    const genreName = req.params.genrename;
+    const genreName = req.params.name;
     const regex = new RegExp(genreName, "i");
     const song = await songs.find({ songLanguage: regex }).limit(20);
     song.length > 1
