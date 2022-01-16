@@ -5,6 +5,9 @@ import "./database/db.js";
 import webRouters from "./routes/router.js";
 const app = Express();
 app.use(Express.urlencoded({ extended: false }));
+app.use((err, req, res, next) => {
+  return res.status(err.statusCode).json({ message: err.message });
+});
 app.use(Express.json());
 app.use(
   cors({
@@ -16,11 +19,8 @@ app.use(
 const PORT = process.env.PORT;
 
 app.use("/api/", webRouters);
-// app.use("/", (req, res) => {
-//   res.json({
-//     message: "Server is Up!",
-//   });
-// });
+
+
 app.listen(PORT, () => {
   console.log(`Server is Listening on ${PORT}`);
 });
