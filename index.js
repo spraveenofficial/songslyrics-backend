@@ -14,14 +14,13 @@ app.use(
 );
 
 const PORT = process.env.PORT;
-app.use("/", (req, res) => {
-  res.json({
-    message: "Server is Up!",
-  });
-});
 
 app.use("/api/", webRouters);
-
+// app.use("/", (req, res) => {
+//   res.json({
+//     message: "Server is Up!",
+//   });
+// });
 app.listen(PORT, () => {
   console.log(`Server is Listening on ${PORT}`);
 });
