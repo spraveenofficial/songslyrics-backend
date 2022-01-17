@@ -7,5 +7,5 @@ route.use("/lyrics/:song", Controllers.specificLyrics);
 route.get("/album/:name", Controllers.getSpecificAlbumSongs);
 route.get("/artist/:name", Controllers.getSpecificArtistLyrics);
 route.get("/genre/:name", Controllers.getSpecificGenreSongs);
-
+route.get("/request", Controllers.userRequest);
 export default route;

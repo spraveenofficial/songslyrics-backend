@@ -39,6 +39,20 @@ class Controller {
       ? res.json(new AppData(true, song, 200))
       : res.json(new AppData(false, "Not found", 404));
   }
+  async userRequest(req, res) {
+    const { name, email, requestType, songName } = req.body;
+    !name || !email || !requestType || !songName
+      ? res.json({
+          message: "All fields are required",
+          success: false,
+          statusCode: 204,
+        })
+      : res.json({
+          message: "Successfully Requested",
+          success: true,
+          statusCode: 200,
+        });
+  }
 }
 
 export default new Controller();
