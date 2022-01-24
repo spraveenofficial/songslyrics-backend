@@ -53,6 +53,14 @@ class Controller {
           statusCode: 200,
         });
   }
+  async search(req, res) {
+    const searchQuery = req.params.name;
+    const regex = new RegExp(searchQuery, "i");
+    const dbResult = await songs.find({ songName: regex });
+    dbResult.length > 1
+      ? res.json(new AppData(true, dbResult, 200))
+      : res.json(new AppData(false, "Not Found", 404));
+  }
 }
 
 export default new Controller();

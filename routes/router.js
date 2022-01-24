@@ -8,4 +8,5 @@ route.get("/album/:name", Controllers.getSpecificAlbumSongs);
 route.get("/artist/:name", Controllers.getSpecificArtistLyrics);
 route.get("/genre/:name", Controllers.getSpecificGenreSongs);
 route.get("/request", Controllers.userRequest);
+route.get("/search/:name", Controllers.search);
 export default route;
