@@ -1,5 +1,6 @@
 import songs from "../database/models/songs.js";
 import AppData from "../lib/error.js";
+import { requestNewSong } from "./telegram.js";
 class Controller {
   async getTotalSongs(req, res) {
     const total = await songs.find().countDocuments();
@@ -41,17 +42,25 @@ class Controller {
   }
   async userRequest(req, res) {
     const { name, email, requestType, songName } = req.body;
-    !name || !email || !requestType || !songName
-      ? res.json({
-          message: "All fields are required",
-          success: false,
-          statusCode: 204,
-        })
-      : res.json({
-          message: "Successfully Requested",
-          success: true,
-          statusCode: 200,
-        });
+    if (!name || !email || !requestType || !songName) {
+      res.json({
+        message: "All fields are required",
+        success: false,
+        statusCode: 204,
+      });
+    } else {
+      requestNewSong({
+        name,
+        email,
+        requestType,
+        songName,
+      });
+      res.json({
+        message: "Successfully Requested",
+        success: true,
+        statusCode: 200,
+      });
+    }
   }
   async search(req, res) {
     const searchQuery = req.params.name;
